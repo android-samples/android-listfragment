@@ -57,10 +57,18 @@ public class MainActivity extends Activity {
 		}
 		
 		String[] mData = new String[]{
-			"Abc",
-			"Def",
-			"Ghi",
-			"Jkl",
+				"Abc",
+				"Def",
+				"Ghi",
+				"Jkl",
+				"Abc",
+				"Def",
+				"Ghi",
+				"Jkl",
+				"Abc",
+				"Def",
+				"Ghi",
+				"Jkl",
 		};
 
 		@Override

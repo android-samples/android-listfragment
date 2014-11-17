@@ -3,12 +3,16 @@ package com.example.mylistfragment;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.app.ListFragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 import android.os.Build;
 
 public class MainActivity extends Activity {
@@ -17,10 +21,12 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		/*
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
+					.add(R.id.container, new MyListFragment()).commit();
 		}
+		*/
 	}
 
 	@Override
@@ -45,11 +51,40 @@ public class MainActivity extends Activity {
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */
-	public static class PlaceholderFragment extends Fragment {
+	public static class MyListFragment extends ListFragment {
 
-		public PlaceholderFragment() {
+		public MyListFragment() {
+		}
+		
+		String[] mData = new String[]{
+			"Abc",
+			"Def",
+			"Ghi",
+			"Jkl",
+		};
+
+		@Override
+		public void onActivityCreated(Bundle savedInstanceState) {
+			// TODO Auto-generated method stub
+			super.onActivityCreated(savedInstanceState);
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+				getActivity(),
+				android.R.layout.simple_list_item_1,
+				mData
+			);
+			this.setListAdapter(adapter);
 		}
 
+		@Override
+		public void onListItemClick(ListView l, View v, int position, long id) {
+			// TODO Auto-generated method stub
+			super.onListItemClick(l, v, position, id);
+			Toast.makeText(getActivity().getApplicationContext(), mData[position], Toast.LENGTH_SHORT).show();
+		}
+		
+		
+
+		/*
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
@@ -57,5 +92,6 @@ public class MainActivity extends Activity {
 					false);
 			return rootView;
 		}
+		*/
 	}
 }
